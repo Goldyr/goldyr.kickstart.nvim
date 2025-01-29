@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 --[[
 
 =====================================================================
@@ -115,9 +116,8 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+-- Por alguna razon no funciona dentro de la funcion que viene por default.
+vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -165,7 +165,7 @@ vim.opt.shiftwidth = 4
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 -- Checkear que onda con hlsearch.
---vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -637,7 +637,7 @@ require('lazy').setup {
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-	--
+        --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
@@ -950,37 +950,38 @@ require('lazy').setup {
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
   --
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-   { import = 'custom.plugins' },
-  --
-  -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
-  -- Or use telescope!
-  -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
-  -- you can continue same window with `<space>sr` which resumes last telescope search
-}, {
-  ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
+  -- -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
+  -- --    This is the easiest way to modularize your config.
+  -- --
+  -- --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
+  { import = 'custom.plugins' },
+  -- --
+  -- -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
+  -- -- Or use telescope!
+  -- -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
+  -- -- you can continue same window with `<space>sr` which resumes last telescope search
+  -- {
+  --   ui = {
+  --     -- If you are using a Nerd Font: set icons to an empty table which will use the
+  --     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
+  --     icons = vim.g.have_nerd_font and {} or {
+  --       cmd = '⌘',
+  --       config = '🛠',
+  --       event = '📅',
+  --       ft = '📂',
+  --       init = '⚙',
+  --       keys = '🗝',
+  --       plugin = '🔌',
+  --       runtime = '💻',
+  --       require = '🌙',
+  --       source = '📄',
+  --       start = '🚀',
+  --       task = '📌',
+  --       lazy = '💤 ',
+  --     },
+  --   },
+  -- },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
