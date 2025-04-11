@@ -2,18 +2,23 @@ return {
   {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
-    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       local harpoon = require 'harpoon'
       harpoon:setup {}
-      -- TODO: Tengo que cambiar las keybinds a algo mas safable
-      -- Encontrar algun toggle para ir al ultimo visitado
+
+      local harpoon_extensions = require 'harpoon.extensions'
+      --Highlighs in quick menu
+      harpoon:extend(harpoon_extensions.builtins.highlight_current_file())
+      --Lets you navigate with numbers in the quick menu
+      harpoon:extend(harpoon_extensions.builtins.navigate_with_number())
+
       vim.keymap.set('n', '<leader>a', function()
         harpoon:list():add()
       end, { desc = 'Add to harpoon list' })
+
       vim.keymap.set('n', '<C-e>', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
-      end)
+      end, { desc = 'Toggle harpoon menu' })
 
       vim.keymap.set('n', '<leader>1', function()
         harpoon:list():select(1)
@@ -35,29 +40,6 @@ return {
       vim.keymap.set('n', '<C-n>', function()
         harpoon:list():next()
       end)
-      -- basic telescope configuration
-      local conf = require('telescope.config').values
-      local function toggle_telescope(harpoon_files)
-        local file_paths = {}
-        for _, item in ipairs(harpoon_files.items) do
-          table.insert(file_paths, item.value)
-        end
-
-        require('telescope.pickers')
-          .new({}, {
-            prompt_title = 'Harpoon',
-            finder = require('telescope.finders').new_table {
-              results = file_paths,
-            },
-            previewer = conf.file_previewer {},
-            sorter = conf.generic_sorter {},
-          })
-          :find()
-      end
-
-      vim.keymap.set('n', '<C-e>', function()
-        toggle_telescope(harpoon:list())
-      end, { desc = 'Open harpoon window' })
     end,
   },
 }
