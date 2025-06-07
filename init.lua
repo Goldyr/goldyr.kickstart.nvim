@@ -216,7 +216,7 @@ require('lazy').setup {
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.opt.timeoutlen
-      delay = 0,
+      delay = 300,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
@@ -380,6 +380,16 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- Shortcut to search through notes
+      vim.keymap.set('n', '<leader>spf', function()
+        builtin.find_files { cwd = '~/repos/notes/private-notes' }
+      end, { desc = '[S]earch [P]rivate notes' })
+
+      -- Shortcut to grep through notes
+      vim.keymap.set('n', '<leader>spg', function()
+        builtin.live_grep { cwd = '~/repos/notes/private-notes' }
+      end, { desc = '[S]earch [G]rep [P]rivate notes' })
     end,
   },
 
