@@ -383,12 +383,12 @@ require('lazy').setup {
 
       -- Shortcut to search through notes
       vim.keymap.set('n', '<leader>spn', function()
-        builtin.find_files { cwd = '~/repos/notes/private-notes' }
+        builtin.find_files { cwd = '~/repos/NOTES/private-notes' }
       end, { desc = '[S]earch [P]rivate [N]otes' })
 
       -- Shortcut to grep through notes
       vim.keymap.set('n', '<leader>spg', function()
-        builtin.live_grep { cwd = '~/repos/notes/private-notes' }
+        builtin.live_grep { cwd = '~/repos/NOTES/private-notes' }
       end, { desc = '[S]earch [P]rivate notes in [G]rep ' })
     end,
   },
