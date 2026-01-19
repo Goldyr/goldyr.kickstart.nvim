@@ -573,18 +573,6 @@ require('lazy').setup {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- No pienso ponerme a escribir .compiler_options o .clangd en cada projecto
-        clangd = {
-          init_options = {
-            fallbackFlags = {
-              '-Iinclude', -- root
-              '-I../include', -- files in /src/
-              '-std=c17', -- C standard
-              '-Wall',
-              '-Wextra',
-            },
-          },
-        },
         --
         -- gopls = {},
         -- pyright = {},
